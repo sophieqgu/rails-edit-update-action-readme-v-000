@@ -35,6 +35,7 @@ RSpec.configure do |config|
   # examples within a transaction, remove the following line or assign false
   # instead of true.
   config.use_transactional_fixtures = false
+
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
   end
@@ -55,6 +56,10 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 
+  config.infer_spec_type_from_file_location!
 
-
+  # Filter lines from Rails gems in backtraces.
+  config.filter_rails_from_backtrace!
+  # arbitrary gems may also be filtered via:
+  # config.filter_gems_from_backtrace("gem name")
 end
